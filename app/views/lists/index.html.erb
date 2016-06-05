@@ -1,0 +1,27 @@
+<div class="container-fluid">
+
+  <h1>
+    <%= @bucket.title %> Tour
+  </h1>
+  <hr />
+
+  <% if @lists.any? %>
+    <ul>
+      <% @lists.each do |list| %>
+        <li>
+          <%= link_to list.title, bucket_list_path(@bucket, list) %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h3>No lists has been added!</h3>
+  <% end %>
+
+  <hr />
+  <%= link_to "Back to bucket", bucket_path(@bucket), class:'btn btn-warning' %>
+  <% if @bucket.user_id == current_user.id %>
+   |
+  	<%= link_to "Create List", new_bucket_list_path(@bucket, @list), class:'btn btn-danger' %>
+  <% end %>
+
+</div>

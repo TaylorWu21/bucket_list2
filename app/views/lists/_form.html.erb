@@ -1,0 +1,21 @@
+<div class='container form-group'>
+<%= form_for [@bucket, @list],  html: { multipart: true } do |f| %>
+<div class='form-group'>
+	<%= f.label :image %>
+	<%= f.file_field :image %>
+</div>
+<div class='form-group'>
+	<%= f.label :title%>
+  <%= f.text_field :title %>
+</div>
+<div class='form-group'>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+</div>
+<div class='form-group'>
+  <%= f.label :completed %>
+  <%= f.select :completed, [true, false] %>
+  <%= f.submit %>
+</div>
+<%end%>
+</div>

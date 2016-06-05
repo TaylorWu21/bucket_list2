@@ -1,0 +1,24 @@
+<div class="container-fluid">
+
+	<h1><%= @bucket.title%></h1>
+	<hr/>
+	<div class="text-center">
+		<%= image_tag @list.image.url(:large) %>
+	</div>
+	<hr />
+	<h3>
+
+		<span><%= @list.description %> </span> <br/>
+	<hr />
+		<span>Completed:</span>
+		<span><%= @list.completed %> </span> <br/>
+
+	</h3>
+	<hr/>
+
+	<% if @bucket.user_id == current_user.id %>
+		<%= link_to "Edit list", edit_bucket_list_path(@bucket, @list),class:'btn btn-success' %> |
+		<%= link_to "Delete", bucket_list_path(@bucket, @list) ,method: :delete, data: {confirm: 'Really delete?'}  ,class:'btn btn-primary' %> |
+	<% end %> 
+	<%= link_to "Lists", bucket_lists_path(@bucket),class:'btn btn-danger' %> |
+</div>

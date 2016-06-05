@@ -1,0 +1,27 @@
+
+<div class="container-fluid">
+<h1>Bucket Title: <%= @bucket.title %> </h1>
+<hr/>
+
+<div class="text-center">
+	<%= image_tag @bucket.image.url(:large) %>
+</div>
+	<h3>
+<hr/>
+	<span><%= @bucket.description %> </span> <br/>
+ <hr />
+	<span>Completed:</span>
+	<span><%= @bucket.completed %> </span> <br/>
+
+</h3>
+<hr/>
+<% if @bucket.user_id == current_user.id %>
+	<%= link_to "Edit Bucket", edit_bucket_path(@bucket), class:'btn btn-primary'  %> |
+	<%= link_to "Delete Bucket", bucket_path(@bucket), method: :delete, data: {confirm: 'Really Logout?'}, class:'btn btn-default'  %> |
+	<%= link_to "#{@bucket.user.email}'s Bucket", buckets_path, class:'btn btn-info'  %>
+|
+<% end %> 
+
+<%= link_to "List", bucket_lists_path(@bucket), class:'btn btn-success' %>
+</div>
+
