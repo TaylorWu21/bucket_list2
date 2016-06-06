@@ -41,7 +41,7 @@ class ListsController < ApplicationController
       flash[:success] = "List has been destroy"
       redirect_to bucket_lists_path
   end
-
+  
   private
       def list_params
           params.require(:list).permit(:title, :description, :completed, :image)

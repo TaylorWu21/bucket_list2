@@ -7,6 +7,7 @@ class BucketsController < ApplicationController
   end
 
   def show
+    commontator_thread_show(@bucket)
   end
 
   def new
@@ -40,6 +41,16 @@ class BucketsController < ApplicationController
   def destroy
   	@bucket.destroy
   	redirect_to buckets_path
+  end
+
+  def upvote 
+    @bucket.upvote_by current_user
+    redirect_to :back
+  end  
+
+  def downvote
+    @bucket.downvote_by current_user
+    redirect_to :back
   end
 
   private

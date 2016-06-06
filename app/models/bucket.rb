@@ -1,4 +1,7 @@
 class Bucket < ActiveRecord::Base
+	acts_as_votable
+	acts_as_commontable
+	
   belongs_to :user
   has_many :lists, dependent: :destroy
   
