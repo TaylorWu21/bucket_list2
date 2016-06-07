@@ -13,4 +13,30 @@ class Bucket < ActiveRecord::Base
 		  	where("title LIKE ?" , "#{search}")
 		 end
 	end
+
+
+	def self.by_title
+		order(:title)
+	end
+
+	def self.by_description(high = false)
+		if high
+      order(description: :desc)
+    else
+      order(:description)
+    end
+	end 
+
+	def self.by_completed
+		order(:completed)
+	end 
+
+
+
+
+
+
+
+
+
 end
