@@ -1,11 +1,11 @@
 class HomeController < ApplicationController
   def index
   	#  @buckets = Bucket.where(user_id: !current_user.id)
-  	 @buckets = Bucket.all - current_user.buckets
+  	
 	  if params[:search]
-	     @buckets = Bucket.search(params[:search])
+	     @buckets = Bucket.search(params[:search]).paginate(:page => params[:page], :per_page => 6)
 	  else
-	    @buckets = Bucket.all - current_user.buckets
+	    @buckets = Bucket.where.not(user_id: current_user.id).paginate(:page => params[:page], :per_page => 6)
 	  end
   end
 end

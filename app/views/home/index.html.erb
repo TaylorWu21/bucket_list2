@@ -1,4 +1,5 @@
-<h1 class="text-center">Explore Buckets</h1>
+<div class='center'>
+<h1 class="text-center">Explore Other People's Bucket Lists</h1>
 
 <hr />
 <div class='row'>
@@ -13,22 +14,28 @@
 </div>
 
 <% if @buckets.any? %>
-	<div class="row">
+  <div class="row">
 		<% @buckets.each do |bucket| %>
-		 <div class="col-md-4">
-		 	 <div class="row">
-				 <div class="col-md-12 text-uppercase text-bold text-center">
-						<%= bucket.title %> 
-				  </div>
-				</div>
-				<%= link_to (image_tag bucket.image.url(:medium)), bucket_path(bucket) %> 
-		</div>
-	<%end%>
-</div>
-	</ul>
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-image">
+       		<%= link_to (image_tag bucket.image.url(:medium)), bucket_path(bucket) %> 
+          
+          <span class="card-title"><%= bucket.title %></span>
+        </div>
+        <div class="card-content">
+          <p><%= bucket.description %></p>
+        </div>
+        <div class="card-action">
+          <%= link_to 'More Info', bucket_path(bucket) %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
 <% else %>
 	<h3 class='center'>No Bucket list has been added!</h3>
 <% end %>
 
-<hr/>
-
+<%= will_paginate @buckets, class:'paginate' %>
+</div>

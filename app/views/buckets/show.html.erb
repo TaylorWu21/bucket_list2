@@ -1,38 +1,37 @@
-
-<div class="container-fluid">
+<div class="container-fluid center">
 	<h1>Bucket Title: <%= @bucket.title %> </h1>
-	<hr/>
+
 
 	<div class="text-center">
 		<%= image_tag @bucket.image.url(:large) %>
 	</div>
-		<h3>
-	<hr/>
-		<span><%= @bucket.description %> </span> <br/>
-	 <hr />
-		<span>Completed:</span>
-		<span><%= @bucket.completed %> </span> <br/>
 
-	</h3>
-	<hr/>
-		<%= commontator_thread(@bucket) %>
-	<hr/>
-	<% if @bucket.user_id == current_user.id %>
-		<%= link_to "Edit Bucket", edit_bucket_path(@bucket), class:'btn btn-primary'  %> |
-		<%= link_to "Delete Bucket", bucket_path(@bucket), method: :delete, data: {confirm: 'Really Logout?'}, class:'btn btn-default'  %> |
-		<%= link_to "#{@bucket.user.email}'s Bucket", buckets_path, class:'btn btn-info'  %>
-	|
-	<% end %> 
-
-	<%= link_to like_bucket_path(@bucket), method: :put, class:'btn btn-info glyphicon glyphicon-heart' do %>
-	  <%= @bucket.get_upvotes.size %>
-	<% end %> |
-
-	<%= link_to dislike_bucket_path(@bucket), method: :put, class:'btn btn-danger glyphicon glyphicon-heart-empty' do %>
-	  <%= @bucket.get_downvotes.size %>
-	<% end %> |
+		<h4><span><%= @bucket.description %> </span> <br/></h4>
+		<br />
+		<p><span>Completed:</span></p>
+		<p><span><%= @bucket.completed %></span> <br/></p>
 
 	<%= link_to "List", bucket_lists_path(@bucket), class:'btn btn-success' %>
+	<hr/>
+	<div class='comments'>
+		<%= commontator_thread(@bucket) %>
+	</div>
+
+	<% if @bucket.user_id == current_user.id %>
+		<%= link_to "Edit Bucket", edit_bucket_path(@bucket), class:'btn orange'  %> 
+		<%= link_to "Delete Bucket", bucket_path(@bucket), method: :delete, data: {confirm: 'Really Delete?'}, class:'btn red'  %> 
+		<%= link_to "#{@bucket.user.email}'s Bucket", buckets_path, class:'btn green'  %>
+
+	<% end %> 
+
+	<%= link_to like_bucket_path(@bucket), method: :put, class:'btn glyphicon glyphicon-heart blue' do %>
+	  <%= @bucket.get_upvotes.size %>
+	<% end %>
+
+	<%= link_to dislike_bucket_path(@bucket), method: :put, class:'btn glyphicon glyphicon-heart-empty red' do %>
+	  <%= @bucket.get_downvotes.size %>
+	<% end %>
+
 
 </div>
 

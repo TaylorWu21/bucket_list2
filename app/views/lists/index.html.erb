@@ -1,27 +1,35 @@
-<div class="container-fluid">
+<div class="container-fluid center">
 
-  <h1>
-    <%= @bucket.title %> Tour
-  </h1>
-  <hr />
+  <h1><%= @bucket.title %></h1>
 
-  <% if @lists.any? %>
-    <ul>
-      <% @lists.each do |list| %>
-        <li>
-          <%= link_to list.title, bucket_list_path(@bucket, list) %>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <h3>No lists has been added!</h3>
-  <% end %>
+<% if @lists.any? %>
+  <div class="row">
+    <% @lists.each do |list| %>
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-image">
+          <%= link_to (image_tag list.image.url(:medium)) %> <span class="card-title"><%= list.title %></span>
+        </div>
+        <div class="card-content">
+          <p><%= list.description %></p>
+        </div>
+        <div class="card-action">
+          <%= link_to 'More Info', bucket_list_path(id: list) %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+<% else %>
+  <h3 class='center'>No Bucket list has been added!</h3>
+<% end %>
 
-  <hr />
-  <%= link_to "Back to bucket", bucket_path(@bucket), class:'btn btn-warning' %>
-  <% if @bucket.user_id == current_user.id %>
-   |
-  	<%= link_to "Create List", new_bucket_list_path(@bucket, @list), class:'btn btn-danger' %>
-  <% end %>
+<hr />
+<%= link_to "Back to bucket", bucket_path(@bucket), class:'btn orange' %>
+<% if @bucket.user_id == current_user.id %> 
+  <%= link_to "Add to List", new_bucket_list_path(@bucket, @list), class:'btn green' %>
+<% end %>
+
+<%= will_paginate @lists, class:'paginate' %>
 
 </div>

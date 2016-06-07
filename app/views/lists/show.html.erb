@@ -1,24 +1,20 @@
-<div class="container-fluid">
+<div class="container-fluid center">
 
-	<h1><%= @bucket.title%></h1>
-	<hr/>
+	<h1><%= @list.title%></h1>
+
 	<div class="text-center">
 		<%= image_tag @list.image.url(:large) %>
 	</div>
-	<hr />
-	<h3>
 
-		<span><%= @list.description %> </span> <br/>
-	<hr />
-		<span>Completed:</span>
-		<span><%= @list.completed %> </span> <br/>
+	<h4><span><%= @list.description %></span></h4> <br/>
 
-	</h3>
-	<hr/>
+	<p><span>Completed:</span></p>
+	<p><span><%= @list.completed %> </span> <br/></p>
+
 
 	<% if @bucket.user_id == current_user.id %>
-		<%= link_to "Edit list", edit_bucket_list_path(@bucket, @list),class:'btn btn-success' %> |
-		<%= link_to "Delete", bucket_list_path(@bucket, @list) ,method: :delete, data: {confirm: 'Really delete?'}  ,class:'btn btn-primary' %> |
+		<%= link_to "Edit list", edit_bucket_list_path(@bucket, @list),class:'btn orange' %> 
+		<%= link_to "Delete", bucket_list_path(@bucket, @list) ,method: :delete, data: {confirm: 'Really delete?'}  ,class:'btn red' %> 
 	<% end %> 
-	<%= link_to "Lists", bucket_lists_path(@bucket),class:'btn btn-danger' %> 
+	<%= link_to "Back", bucket_lists_path(@bucket),class:'btn' %> 
 </div>

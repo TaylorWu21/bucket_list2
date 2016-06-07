@@ -15,7 +15,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-#paper clip
+# Will paginate
+gem 'will_paginate', '~> 3.1'
+# paper clip
 gem "paperclip", "~> 5.0.0.beta2"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

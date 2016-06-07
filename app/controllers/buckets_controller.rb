@@ -3,7 +3,7 @@ class BucketsController < ApplicationController
   before_action :bucket, except: [:index, :new, :create]
 
   def index
-  	@buckets = current_user.buckets
+  	@buckets = current_user.buckets.paginate(:page => params[:page], :per_page => 6)
   end
 
   def show
@@ -40,16 +40,19 @@ class BucketsController < ApplicationController
 
   def destroy
   	@bucket.destroy
+    flash[:success] = "Deleted Bucket List."
   	redirect_to buckets_path
   end
 
   def upvote 
     @bucket.upvote_by current_user
+    flash[:success] = "Upvoted Bucket List!"
     redirect_to :back
   end  
 
   def downvote
     @bucket.downvote_by current_user
+    flash[:success] = "Downvoted Bucket List."
     redirect_to :back
   end
 

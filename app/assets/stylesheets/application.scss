@@ -1,4 +1,3 @@
-
 /*
 *= require commontator/application
 */
@@ -10,3 +9,11 @@ $primary-color: color("blue", "lighten-2") !default;
 @import "home";
 @import "lists";
 @import "app";
+
+.btn {
+	margin: 10px;
+}
+
+.comments {
+	margin: 30px;
+}
