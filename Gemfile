@@ -19,6 +19,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'will_paginate', '~> 3.1'
 # paper clip
 gem "paperclip", "~> 5.0.0.beta2"
+# Heroku image upload
+gem 'aws-sdk', '~> 2.3'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -38,6 +40,13 @@ gem 'commontator', '~> 4.11.1'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+group :production do
+	# Faster Threading
+	gem 'puma', '~> 3.4'
+	#Heroku Gem for static assets / smooth deploys
+	gem 'rails_12factor'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
